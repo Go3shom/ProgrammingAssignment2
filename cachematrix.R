@@ -11,7 +11,7 @@ makeCacheMatrix <- function(m = matrix()) {
   
   # Setting the matrix.
   set <- function( matrix ) {
-    mat <<- matrix
+    m <<- matrix
     mat_inv <<- NULL
   }
   
@@ -19,7 +19,7 @@ makeCacheMatrix <- function(m = matrix()) {
   get <- function() {
     
     # Return the matrix.
-    mat
+    m
   }
   
   # Function that sets the matrix inverse.
@@ -47,23 +47,23 @@ makeCacheMatrix <- function(m = matrix()) {
 cacheSolve <- function(x, ...) {
   
   # Get the inverse of Matrix x.
-  mat <- x$getInverse()
+  m <- x$getInverse()
   
   # Return the value of the inverse if it is set.
-  if( !is.null(mat)) {
+  if( !is.null(m)) {
     message("Data Get Cached.")
-    return(mat)
+    return(m)
   }
   
   # Getting the data from object.
   data <- x$get()
   
   # Inverse calculation by matrix multiplication.
-  mat <- solve(data) %*% data
+  m <- solve(data)
   
   # Set the inverse to "mat" object.
-  x$setInverse(mat)
+  x$setInverse(m)
   
   # Return the resulted matrix.
-  mat
+  m
 }
